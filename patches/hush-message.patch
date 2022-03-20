@@ -1,3 +1,19 @@
+diff --git a/lisp/international/mule.el b/lisp/international/mule.el
+index 8978a97..1da9d90 100644
+--- a/lisp/international/mule.el
++++ b/lisp/international/mule.el
+@@ -359,11 +359,6 @@ Return t if file exists."
+ 	(let (kill-buffer-hook kill-buffer-query-functions)
+ 	  (kill-buffer buffer)))
+       (do-after-load-evaluation fullname)
+-
+-      (unless (or nomessage noninteractive)
+-	(if source
+-	    (message "Loading %s (source)...done" file)
+-	  (message "Loading %s...done" file)))
+       t)))
+ 
+ (defun charset-info (charset)
 diff --git a/lisp/org/org.el b/lisp/org/org.el
 index 4755bca..e9a9ba5 100644
 --- a/lisp/org/org.el
