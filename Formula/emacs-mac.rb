@@ -178,6 +178,7 @@ class EmacsMac < Formula
   end
 
   def caveats
+    `osascript -e 'tell application "Finder" to make alias file to POSIX file "#{prefix}/Emacs.app" at POSIX file "/Applications"'`
     <<~EOS
       This is YAMAMOTO Mitsuharu's "Mac port" addition to
       GNU Emacs 27. This provides a native GUI support for Mac OS X
