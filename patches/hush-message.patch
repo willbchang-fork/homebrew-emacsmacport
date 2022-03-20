@@ -15,3 +15,29 @@ index 4755bca..e9a9ba5 100644
  
  (defcustom org-babel-load-languages '((emacs-lisp . t))
    "Languages which can be evaluated in Org buffers.
+diff --git a/src/lread.c b/src/lread.c
+index d3e0a63..f35221a 100644
+--- a/src/lread.c
++++ b/src/lread.c
+@@ -1601,21 +1601,6 @@ Return t if the file exists and loads successfully.  */)
+   prev_saved_doc_string = 0;
+   prev_saved_doc_string_size = 0;
+ 
+-  if (!noninteractive && (NILP (nomessage) || force_load_messages))
+-    {
+-      if (is_module)
+-        message_with_string ("Loading %s (module)...done", file, 1);
+-      else if (is_native_elisp)
+-	message_with_string ("Loading %s (native compiled elisp)...done", file, 1);
+-      else if (!compiled)
+-	message_with_string ("Loading %s (source)...done", file, 1);
+-      else if (newer)
+-	message_with_string ("Loading %s (compiled; note, source file is newer)...done",
+-		 file, 1);
+-      else /* The typical case; compiled file newer than source file.  */
+-	message_with_string ("Loading %s...done", file, 1);
+-    }
+-
+   return Qt;
+ }
+ 
