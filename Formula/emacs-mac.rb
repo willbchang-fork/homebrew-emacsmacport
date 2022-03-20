@@ -91,6 +91,12 @@ class EmacsMac < Formula
     sha256 "5a13e83e79ce9c4a970ff0273e9a3a07403cc07f7333a0022b91c191200155a1"
   end
 
+  # Hush org-babel-load-file messages
+  patch do
+    url "https://raw.githubusercontent.com/willbchang-fork/homebrew-emacsmacport/ce961194c29ffab0e77fff01d068a02cb649f92b/patches/hush-message.patch"
+    sha256 "6685c460d5768121bf033d7a356fdf497874dc23a132a3db3131f2ab31a91eef"
+  end
+
   stable do
     patch do
       url "https://raw.githubusercontent.com/railwaycat/homebrew-emacsmacport/7e793808ebbc11d519a0103fb9f8fe7efbec345d/patches/mac-arm-fix.diff"
