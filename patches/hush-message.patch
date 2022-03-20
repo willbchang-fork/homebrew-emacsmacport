@@ -1,15 +1,17 @@
 diff --git a/lisp/org/org.el b/lisp/org/org.el
-index 4755bca..6a4458f 100644
+index 4755bca..e9a9ba5 100644
 --- a/lisp/org/org.el
 +++ b/lisp/org/org.el
-@@ -247,9 +247,7 @@ byte-compiled before it is loaded."
+@@ -246,10 +246,8 @@ byte-compiled before it is loaded."
+     (if compile
  	(progn
  	  (byte-compile-file tangled-file)
- 	  (load tangled-file)
+-	  (load tangled-file)
 -	  (message "Compiled and loaded %s" tangled-file))
 -      (load-file tangled-file)
 -      (message "Loaded %s" tangled-file))))
-+      (load-file tangled-file)))))
++	  (load tangled-file))
++      (load-file tangled-file))))
  
  (defcustom org-babel-load-languages '((emacs-lisp . t))
    "Languages which can be evaluated in Org buffers.
