@@ -93,7 +93,7 @@ class EmacsMac < Formula
 
   # Hush org-babel-load-file messages
   patch do
-    url "https://raw.githubusercontent.com/willbchang-fork/homebrew-emacsmacport/ce961194c29ffab0e77fff01d068a02cb649f92b/patches/hush-message.patch"
+    url "https://raw.githubusercontent.com/willbchang-fork/homebrew-emacsmacport/6d739e0ef0d85694d7dddca52c7d9312605b47ea/patches/hush-message.diff"
     sha256 "85621f1fb086d31cd287c484c2c4087ade473e052b0c32082e7974e74e77dcbd"
   end
 
