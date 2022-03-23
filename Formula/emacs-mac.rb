@@ -92,10 +92,10 @@ class EmacsMac < Formula
   end
 
   # Hush load, org-babel-load-file messages
-  # patch do
-  #   url "https://raw.githubusercontent.com/willbchang-fork/homebrew-emacsmacport/master/patches/hush-message.patch"
-  #   sha256 "428497021fc7e9f55b8db7f73bb8bbd9ce26090f515ad682c3b5727127c67997"
-  # end
+  patch do
+    url "https://raw.githubusercontent.com/willbchang-fork/homebrew-emacsmacport/master/patches/suppress-message.patch"
+    sha256 "eede3a990135a4d429bffdc242a466f0e50eb51a528ca561c5f45d59e8b440a"
+  end
 
   stable do
     patch do

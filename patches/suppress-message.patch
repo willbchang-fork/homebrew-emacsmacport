@@ -1,0 +1,134 @@
+diff --git a/lisp/international/mule.el b/lisp/international/mule.el
+index 8978a97..f52de1e 100644
+--- a/lisp/international/mule.el
++++ b/lisp/international/mule.el
+@@ -312,10 +312,6 @@ Return t if file exists."
+     (let ((buffer (generate-new-buffer " *load*"))
+           (load-in-progress t)
+           (source (string-suffix-p ".el" fullname)))
+-      (unless nomessage
+-	(if source
+-	    (message "Loading %s (source)..." file)
+-	  (message "Loading %s..." file)))
+       (when purify-flag
+ 	(push (purecopy file) preloaded-file-list))
+       (unwind-protect
+@@ -359,11 +355,6 @@ Return t if file exists."
+ 	(let (kill-buffer-hook kill-buffer-query-functions)
+ 	  (kill-buffer buffer)))
+       (do-after-load-evaluation fullname)
+-
+-      (unless (or nomessage noninteractive)
+-	(if source
+-	    (message "Loading %s (source)...done" file)
+-	  (message "Loading %s...done" file)))
+       t)))
+ 
+ (defun charset-info (charset)
+diff --git a/lisp/org/org.el b/lisp/org/org.el
+index 4755bca..f20b3be 100644
+--- a/lisp/org/org.el
++++ b/lisp/org/org.el
+@@ -246,10 +246,8 @@ byte-compiled before it is loaded."
+     (if compile
+ 	(progn
+ 	  (byte-compile-file tangled-file)
+-	  (load tangled-file)
+-	  (message "Compiled and loaded %s" tangled-file))
+-      (load-file tangled-file)
+-      (message "Loaded %s" tangled-file))))
++	  (load tangled-file))
++      (load-file tangled-file))))
+ 
+ (defcustom org-babel-load-languages '((emacs-lisp . t))
+   "Languages which can be evaluated in Org buffers.
+@@ -6466,9 +6464,7 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+       ;; We just created the overview - now do table of contents
+       ;; This can be slow in very large buffers, so indicate action
+       (run-hook-with-args 'org-pre-cycle-hook 'contents)
+-      (unless ga (org-unlogged-message "CONTENTS..."))
+       (org-content)
+-      (unless ga (org-unlogged-message "CONTENTS...done"))
+       (setq org-cycle-global-status 'contents)
+       (run-hook-with-args 'org-cycle-hook 'contents))
+ 
+@@ -6477,7 +6473,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+       ;; We just showed the table of contents - now show everything
+       (run-hook-with-args 'org-pre-cycle-hook 'all)
+       (org-show-all '(headings blocks))
+-      (unless ga (org-unlogged-message "SHOW ALL"))
+       (setq org-cycle-global-status 'all)
+       (run-hook-with-args 'org-cycle-hook 'all))
+ 
+@@ -6485,7 +6480,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+       ;; Default action: go to overview
+       (run-hook-with-args 'org-pre-cycle-hook 'overview)
+       (org-overview)
+-      (unless ga (org-unlogged-message "OVERVIEW"))
+       (setq org-cycle-global-status 'overview)
+       (run-hook-with-args 'org-cycle-hook 'overview)))))
+ 
+@@ -6581,8 +6575,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+       (unless (org-before-first-heading-p)
+ 	(run-hook-with-args 'org-pre-cycle-hook 'subtree))
+       (org-flag-region eoh eos nil 'outline)
+-      (org-unlogged-message
+-       (if children-skipped "SUBTREE (NO CHILDREN)" "SUBTREE"))
+       (setq org-cycle-subtree-status 'subtree)
+       (unless (org-before-first-heading-p)
+ 	(run-hook-with-args 'org-cycle-hook 'subtree)))
+@@ -6590,7 +6582,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+       ;; Default action: hide the subtree.
+       (run-hook-with-args 'org-pre-cycle-hook 'folded)
+       (org-flag-region eoh eos t 'outline)
+-      (org-unlogged-message "FOLDED")
+       (setq org-cycle-subtree-status 'folded)
+       (unless (org-before-first-heading-p)
+ 	(run-hook-with-args 'org-cycle-hook 'folded))))))
+diff --git a/lisp/startup.el b/lisp/startup.el
+index a91175b..12261a8 100644
+--- a/lisp/startup.el
++++ b/lisp/startup.el
+@@ -65,7 +65,7 @@ string or function value that this variable has."
+ (defvaralias 'inhibit-splash-screen 'inhibit-startup-screen)
+ (defvaralias 'inhibit-startup-message 'inhibit-startup-screen)
+ 
+-(defcustom inhibit-startup-screen nil
++(defcustom inhibit-startup-screen t
+   "Non-nil inhibits the startup screen.
+ 
+ This is for use in your personal init file (but NOT site-start.el),
+@@ -2356,7 +2356,6 @@ A fancy display is used on graphic displays, normal otherwise."
+ 
+ (defun command-line-1 (args-left)
+   "A subroutine of `command-line'."
+-  (display-startup-echo-area-message)
+   (when (and pure-space-overflow
+ 	     (not noninteractive)
+              ;; If we were dumped with pdumper, we don't care about
+diff --git a/src/lread.c b/src/lread.c
+index d3e0a63..f35221a 100644
+--- a/src/lread.c
++++ b/src/lread.c
+@@ -1601,21 +1601,6 @@ Return t if the file exists and loads successfully.  */)
+   prev_saved_doc_string = 0;
+   prev_saved_doc_string_size = 0;
+ 
+-  if (!noninteractive && (NILP (nomessage) || force_load_messages))
+-    {
+-      if (is_module)
+-        message_with_string ("Loading %s (module)...done", file, 1);
+-      else if (is_native_elisp)
+-	message_with_string ("Loading %s (native compiled elisp)...done", file, 1);
+-      else if (!compiled)
+-	message_with_string ("Loading %s (source)...done", file, 1);
+-      else if (newer)
+-	message_with_string ("Loading %s (compiled; note, source file is newer)...done",
+-		 file, 1);
+-      else /* The typical case; compiled file newer than source file.  */
+-	message_with_string ("Loading %s...done", file, 1);
+-    }
+-
+   return Qt;
+ }
+ 
