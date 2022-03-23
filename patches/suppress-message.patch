@@ -26,7 +26,7 @@ index 8978a97..f52de1e 100644
  
  (defun charset-info (charset)
 diff --git a/lisp/org/org.el b/lisp/org/org.el
-index 4755bca..f20b3be 100644
+index 4755bca..4b90006 100644
 --- a/lisp/org/org.el
 +++ b/lisp/org/org.el
 @@ -246,10 +246,8 @@ byte-compiled before it is loaded."
@@ -68,7 +68,15 @@ index 4755bca..f20b3be 100644
        (setq org-cycle-global-status 'overview)
        (run-hook-with-args 'org-cycle-hook 'overview)))))
  
-@@ -6581,8 +6575,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+@@ -6565,7 +6559,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+ 		(dolist (e (org-list-get-all-items (point) struct prevs))
+ 		  (org-list-set-item-visibility e struct 'folded))
+ 		(goto-char (if (< end eos) end eos)))))))
+-      (org-unlogged-message "CHILDREN")
+       (save-excursion
+ 	(goto-char eos)
+ 	(outline-next-heading)
+@@ -6581,8 +6574,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
        (unless (org-before-first-heading-p)
  	(run-hook-with-args 'org-pre-cycle-hook 'subtree))
        (org-flag-region eoh eos nil 'outline)
@@ -77,7 +85,7 @@ index 4755bca..f20b3be 100644
        (setq org-cycle-subtree-status 'subtree)
        (unless (org-before-first-heading-p)
  	(run-hook-with-args 'org-cycle-hook 'subtree)))
-@@ -6590,7 +6582,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+@@ -6590,7 +6581,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
        ;; Default action: hide the subtree.
        (run-hook-with-args 'org-pre-cycle-hook 'folded)
        (org-flag-region eoh eos t 'outline)
@@ -86,10 +94,10 @@ index 4755bca..f20b3be 100644
        (unless (org-before-first-heading-p)
  	(run-hook-with-args 'org-cycle-hook 'folded))))))
 diff --git a/lisp/startup.el b/lisp/startup.el
-index a91175b..12261a8 100644
+index a91175b..5a35b52 100644
 --- a/lisp/startup.el
 +++ b/lisp/startup.el
-@@ -65,7 +65,7 @@ string or function value that this variable has."
+@@ -65,21 +65,21 @@ string or function value that this variable has."
  (defvaralias 'inhibit-splash-screen 'inhibit-startup-screen)
  (defvaralias 'inhibit-startup-message 'inhibit-startup-screen)
  
@@ -98,7 +106,36 @@ index a91175b..12261a8 100644
    "Non-nil inhibits the startup screen.
  
  This is for use in your personal init file (but NOT site-start.el),
-@@ -2356,7 +2356,6 @@ A fancy display is used on graphic displays, normal otherwise."
+ once you are familiar with the contents of the startup screen."
+   :type 'boolean)
+ 
+-(defvar startup-screen-inhibit-startup-screen nil)
++(defvar startup-screen-inhibit-startup-screen t)
+ 
+ ;; The mechanism used to ensure that only end users can disable this
+ ;; message is not complex.  Clearly, it is possible for a determined
+ ;; system administrator to inhibit this message anyway, but at least
+ ;; they will do so with knowledge of why the Emacs developers think
+ ;; this is a bad idea.
+-(defcustom inhibit-startup-echo-area-message nil
++(defcustom inhibit-startup-echo-area-message t
+   "Non-nil inhibits the initial startup echo area message.
+ 
+ The startup message is in the echo area as it provides information
+@@ -1548,11 +1548,7 @@ Changed settings will be marked as \"CHANGED outside of Customize\"."
+ 	   `((changed ((t :background ,color)))))
+       (put 'cursor 'face-modified t))))
+ 
+-(defcustom initial-scratch-message (purecopy "\
+-;; This buffer is for text that is not saved, and for Lisp evaluation.
+-;; To create a file, visit it with \\[find-file] and enter text in its buffer.
+-
+-")
++(defcustom initial-scratch-message nil
+   "Initial documentation displayed in *scratch* buffer at startup.
+ If this is nil, no message will be displayed."
+   :type '(choice (text :tag "Message")
+@@ -2356,7 +2352,6 @@ A fancy display is used on graphic displays, normal otherwise."
  
  (defun command-line-1 (args-left)
    "A subroutine of `command-line'."
@@ -106,6 +143,19 @@ index a91175b..12261a8 100644
    (when (and pure-space-overflow
  	     (not noninteractive)
               ;; If we were dumped with pdumper, we don't care about
+diff --git a/src/data.c b/src/data.c
+index 9bf9d60..dea4138 100644
+--- a/src/data.c
++++ b/src/data.c
+@@ -4008,8 +4008,6 @@ syms_of_data (void)
+   Fput (Qarith_error, Qerror_conditions, arith_tail);
+   Fput (Qarith_error, Qerror_message, build_pure_c_string ("Arithmetic error"));
+ 
+-  PUT_ERROR (Qbeginning_of_buffer, error_tail, "Beginning of buffer");
+-  PUT_ERROR (Qend_of_buffer, error_tail, "End of buffer");
+   PUT_ERROR (Qbuffer_read_only, error_tail, "Buffer is read-only");
+   PUT_ERROR (Qtext_read_only, pure_cons (Qbuffer_read_only, error_tail),
+ 	     "Text is read-only");
 diff --git a/src/lread.c b/src/lread.c
 index d3e0a63..f35221a 100644
 --- a/src/lread.c
