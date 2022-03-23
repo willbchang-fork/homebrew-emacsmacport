@@ -1,0 +1,30 @@
+* Suppress Message
+** Editing
+- [ ] beginning-of-line
+- [ ] end-of-line
+- [ ] beginning-of-buffer
+- [ ] end-of-buffer
+** Org Mode
+- [X] org-babel-load-file
+- [ ] org-cycle
+** Init
+- [ ] write-region
+- [ ] load
+- [ ] (fset 'display-startup-echo-area-message 'ignore)
+- [ ] warning-minimum-level :error
+- [ ] inhibit-startup-screen t
+- [ ] initial-scratch-message nil
+- [ ] inhibit-startup-message t
+- [ ] inhibit-startup-echo-area-message t
+* Test
+** 2022/3/23 16:03
+*** sha256
+1. Openssl eede3a990135a4d429bffdc242a466f0e50eb51a528ca561c5f45d59e8b440a
+2. shasum  eede3a990135a4d429bffdc242a466f0e50eb51a528ca561c5f45d59e8b440a
+*** Messages
+- Loading... done
+- Loaded
+- Org Cycle
+- startup screen
+- startup message
+
