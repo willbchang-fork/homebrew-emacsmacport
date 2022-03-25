@@ -104,11 +104,11 @@ class EmacsMac < Formula
   end
 
   # Natural Title Bar
-  patch do
-    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/natural-title-bar.patch"
-    sha256 "4c1f7a56e09a25101b6a71ec31f34ec16d03d2d1966db6f4780e11989c18617e"
-  end
-
+#  patch do
+#    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/natural-title-bar.patch"
+#    sha256 "4c1f7a56e09a25101b6a71ec31f34ec16d03d2d1966db6f4780e11989c18617e"
+#  end
+#
 
   stable do
     patch do
