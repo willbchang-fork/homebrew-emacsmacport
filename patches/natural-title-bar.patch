@@ -1,5 +1,5 @@
 diff --git a/src/macappkit.m b/src/macappkit.m
-index 16403f9..b06c7de 100644
+index 16403f9..5d0ab0e 100644
 --- a/src/macappkit.m
 +++ b/src/macappkit.m
 @@ -1935,6 +1935,18 @@ - (BOOL)doesHoldQuit
@@ -42,12 +42,17 @@ index 16403f9..b06c7de 100644
    if (FRAME_MAC_DOUBLE_BUFFERED_P (f))
      {
        FRAME_SYNTHETIC_BOLD_WORKAROUND_DISABLED_P (f) = true;
-@@ -6308,7 +6334,7 @@ + (void)initialize
+@@ -6307,8 +6333,11 @@ + (void)initialize
+     {
        NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
  
-       if ([defaults objectForKey:@"ApplePressAndHoldEnabled"] == nil)
+-      if ([defaults objectForKey:@"ApplePressAndHoldEnabled"] == nil)
 -	[defaults registerDefaults:@{@"ApplePressAndHoldEnabled" : @"NO"}];
-+	[defaults registerDefaults:@{@"ApplePressAndHoldEnabled" : @"NO", @"TransparentTitleBar": @"YES", @"HideDocumentIcon": nil}];
++       if ([defaults objectForKey:@"ApplePressAndHoldEnabled"] == nil)
++ 	{
++ 	  NSDictionaryOf (NSString *, NSString *) *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:@"NO", @"ApplePressAndHoldEnabled", @"NO", @"TransparentTitleBar", @"NO", @"HideDocumentIcon", nil];
++ 
++ 	  [defaults registerDefaults:appDefaults];
      }
  }
  
