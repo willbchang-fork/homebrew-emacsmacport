@@ -25,6 +25,25 @@ index 8978a97..f52de1e 100644
        t)))
  
  (defun charset-info (charset)
+diff --git a/lisp/org/ob-tangle.el b/lisp/org/ob-tangle.el
+index 566258e..e8b721d 100644
+--- a/lisp/org/ob-tangle.el
++++ b/lisp/org/ob-tangle.el
+@@ -280,14 +280,6 @@ matching a regular expression."
+ 	 (if (equal arg '(4))
+ 	     (org-babel-tangle-single-block 1 t)
+ 	   (org-babel-tangle-collect-blocks lang-re tangle-file)))
+-	(message "Tangled %d code block%s from %s" block-counter
+-		 (if (= block-counter 1) "" "s")
+-		 (file-name-nondirectory
+-		  (buffer-file-name
+-		   (or (buffer-base-buffer)
+-                       (current-buffer)
+-                       (and (org-src-edit-buffer-p)
+-                            (org-src-source-buffer))))))
+ 	;; run `org-babel-post-tangle-hook' in all tangled files
+ 	(when org-babel-post-tangle-hook
+ 	  (mapc
 diff --git a/lisp/org/org.el b/lisp/org/org.el
 index 4755bca..4b90006 100644
 --- a/lisp/org/org.el

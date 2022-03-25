@@ -94,7 +94,7 @@ class EmacsMac < Formula
   # Hush load, org-babel-load-file messages
   patch do
     url "https://raw.githubusercontent.com/willbchang-fork/homebrew-emacsmacport/master/patches/suppress-message.patch"
-    sha256 "121da8fa45bc4ad509eaa6199b218be2195a7841b4f882897249119f508955c5"
+    sha256 "408098ec73d50d1000e2ce7638d26cdfc168eb3d77d0ce76c9b563166f2e7b75"
   end
 
   stable do
