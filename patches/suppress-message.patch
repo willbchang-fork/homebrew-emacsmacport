@@ -25,6 +25,18 @@ index 8978a97..f52de1e 100644
        t)))
  
  (defun charset-info (charset)
+diff --git a/lisp/loadup.el b/lisp/loadup.el
+index 9712e4a..2adf208 100644
+--- a/lisp/loadup.el
++++ b/lisp/loadup.el
+@@ -327,6 +327,7 @@
+ (if (featurep 'mac)
+     (progn
+       (load "term/common-win")
++      (load "term/ns-win")
+       (load "term/mac-win")))
+ (if (featurep 'ns)
+     (progn
 diff --git a/lisp/org/ob-tangle.el b/lisp/org/ob-tangle.el
 index 566258e..e8b721d 100644
 --- a/lisp/org/ob-tangle.el
@@ -162,3 +174,22 @@ index a91175b..5a35b52 100644
    (when (and pure-space-overflow
  	     (not noninteractive)
               ;; If we were dumped with pdumper, we don't care about
+diff --git a/src/fileio.c b/src/fileio.c
+index afdf4b1..78d9196 100644
+--- a/src/fileio.c
++++ b/src/fileio.c
+@@ -5501,14 +5501,6 @@ write_region (Lisp_Object start, Lisp_Object end, Lisp_Object filename,
+       return Qnil;
+     }
+ 
+-  if (!auto_saving && !noninteractive)
+-    message_with_string ((NUMBERP (append)
+-			  ? "Updated %s"
+-			  : ! NILP (append)
+-			  ? "Added to %s"
+-			  : "Wrote %s"),
+-			 visit_file, 1);
+-
+   return Qnil;
+ }
+ 
