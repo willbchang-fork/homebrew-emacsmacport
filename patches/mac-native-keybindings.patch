@@ -1,8 +1,8 @@
 diff --git a/lisp/term/mac-win.el b/lisp/term/mac-win.el
-index 20b03f3..e6f5b8d 100644
+index 20b03f3..973d2c6 100644
 --- a/lisp/term/mac-win.el
 +++ b/lisp/term/mac-win.el
-@@ -3219,6 +3219,84 @@ system symbol names."
+@@ -3219,6 +3219,74 @@ system symbol names."
  	     (and value (cdr value))))
  	 mac-system-symbol-cache))))
  
@@ -25,19 +25,9 @@ index 20b03f3..e6f5b8d 100644
 +(global-set-key (kbd "s-[") 'previous-buffer)
 +(global-set-key (kbd "s-]") 'next-buffer)
 +(global-set-key (kbd "s-s") 'save-buffer)
-+(global-set-key (kbd "s-,") 'open-config-file)
-+(global-set-key (kbd "s-.") 'reload-init-file)
-+
-+(defun open-config-file ()
-+  (interactive)
-+  (find-file "~/.config/emacs/config.org"))
-+
-+(defun reload-init-file ()
-+  (interactive)
-+  (load-file user-init-file))
++(global-set-key (kbd "s-,") 'customize)
 +
 +;; Moving Cursor
-+
 +(global-set-key (kbd "s-<up>") 'beginning-of-buffer)
 +(global-set-key (kbd "s-<down>") 'end-of-buffer)
 +(global-set-key (kbd "s-<left>") 'smarter-move-beginning-of-line)
