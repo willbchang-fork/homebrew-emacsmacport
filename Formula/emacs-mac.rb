@@ -97,6 +97,13 @@ class EmacsMac < Formula
     sha256 "2669c11f2cdb8866328972923f9cde85a9fc51c4c6a93ae4d703eaba4181dd74"
   end
 
+  # Native keybindings
+  patch do
+    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-native-keybindings.patch"
+    sha256 "cfd15d946f8c2059818aa3a6b9d222eace0785ec14096f8d2c20d9bf54eeba3f"
+  end
+
+
   stable do
     patch do
       url "https://raw.githubusercontent.com/railwaycat/homebrew-emacsmacport/7e793808ebbc11d519a0103fb9f8fe7efbec345d/patches/mac-arm-fix.diff"
