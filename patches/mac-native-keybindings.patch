@@ -1,31 +1,36 @@
 diff --git a/lisp/term/mac-win.el b/lisp/term/mac-win.el
-index 20b03f3..973d2c6 100644
+index 20b03f3..3586786 100644
 --- a/lisp/term/mac-win.el
 +++ b/lisp/term/mac-win.el
-@@ -3219,6 +3219,74 @@ system symbol names."
+@@ -3219,6 +3219,118 @@ system symbol names."
  	     (and value (cdr value))))
  	 mac-system-symbol-cache))))
  
 +;; Here are some Nextstep-like bindings for command key sequences.
++;; Set modifiers correctly
 +(setq mac-command-modifier 'super
 +      mac-option-modifier 'meta)
 +
++;; Frame
 +(global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
++(global-set-key (kbd "s-n") 'make-frame)
 +(global-set-key (kbd "s-W") 'delete-frame)
 +(global-set-key (kbd "s-`") 'other-frame)
 +(global-set-key (kbd "M-`") 'other-window)
 +(global-set-key (kbd "C-s-f") 'toggle-frame-fullscreen)
 +
-+;; Buffer shortcuts
-+;; Disable swipe left/right to change buffer.
-+(global-unset-key [swipe-left])
-+(global-unset-key [swipe-right])
-+
++;; Buffer
 +(global-set-key (kbd "s-w") 'kill-this-buffer)
 +(global-set-key (kbd "s-[") 'previous-buffer)
 +(global-set-key (kbd "s-]") 'next-buffer)
 +(global-set-key (kbd "s-s") 'save-buffer)
 +(global-set-key (kbd "s-,") 'customize)
++(global-set-key (kbd "s-t") 'new-empty-buffer)
++(global-set-key (kbd "s-r") 'revert-buffer-no-confirm)
++
++;; Disable swipe left/right to change buffer.
++(global-unset-key [swipe-left])
++(global-unset-key [swipe-right])
 +
 +;; Moving Cursor
 +(global-set-key (kbd "s-<up>") 'beginning-of-buffer)
@@ -44,6 +49,45 @@ index 20b03f3..973d2c6 100644
 +(global-set-key (kbd "<s-return>") 'newline)
 +(global-set-key (kbd "s-<backspace>") 'backward-kill-line)
 +(global-set-key (kbd "s-S-<backspace>") 'kill-whole-line)
++
++;; Text Scale
++(global-set-key (kbd "s-+") 'text-scale-adjust)
++(global-set-key (kbd "s-=") 'text-scale-adjust)
++(global-set-key (kbd "s--") 'text-scale-adjust)
++(global-set-key (kbd "s-0") 'text-scale-adjust)
++
++;; Translation Chinese Keybindings
++(define-key key-translation-map (kbd "s-【") (kbd "s-["))
++(define-key key-translation-map (kbd "s-】") (kbd "s-]"))
++(define-key key-translation-map (kbd "s-，") (kbd "s-,"))
++(define-key key-translation-map (kbd "s-。") (kbd "s-."))
++(define-key key-translation-map (kbd "C-·") (kbd "C-`"))
++;; (define-key key-translation-map (kbd "M-·") (kbd "M-`"))
++
++;; Cusmotized Keybindings' Functions
++;; http://ergoemacs.org/emacs/emacs_new_empty_buffer.html
++(defun new-empty-buffer ()
++  "Create a new empty buffer.
++New buffer will be named “untitled” or “untitled<2>”, “untitled<3>”, etc."
++  (interactive)
++  (let (($buffer (generate-new-buffer "untitled")))
++    (switch-to-buffer $buffer)
++    (funcall initial-major-mode)
++    (setq buffer-offer-save t)
++    $buffer))
++
++(defun revert-buffer-no-confirm ()
++  "Revert buffer without confirmation."
++  (interactive)
++  (save-buffer t)
++  (revert-buffer t t)
++  (message "Reverted `%s'" (buffer-name)))
++
++
++(defun reveal-in-finder ()
++  "Open current file in Finder."
++  (interactive)
++  (shell-command "open -R ."))
 +
 +(defun backward-kill-line (arg)
 +  "Kill ARG lines backward."
