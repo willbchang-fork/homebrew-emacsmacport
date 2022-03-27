@@ -1,8 +1,8 @@
 diff --git a/lisp/term/mac-win.el b/lisp/term/mac-win.el
-index 20b03f3..8fb56ea 100644
+index 20b03f3..c1497f8 100644
 --- a/lisp/term/mac-win.el
 +++ b/lisp/term/mac-win.el
-@@ -3219,6 +3219,135 @@ system symbol names."
+@@ -3219,6 +3219,136 @@ system symbol names."
  	     (and value (cdr value))))
  	 mac-system-symbol-cache))))
  
@@ -57,7 +57,8 @@ index 20b03f3..8fb56ea 100644
 +(global-set-key (kbd "s-0") 'text-scale-adjust)
 +
 +;; Use Return to act Yes
-+(define-key y-or-n-p-map (kbd "<return>") 'act)
++(setq use-short-answers t)
++(define-key y-or-n-p-map (kbd "<return>") 'y-or-n-p-insert-y)
 +
 +;; Translation ESC keybinding
 +;; Cancel partially typed or accidental command.
@@ -69,7 +70,7 @@ index 20b03f3..8fb56ea 100644
 +(define-key key-translation-map (kbd "s-，") (kbd "s-,"))
 +(define-key key-translation-map (kbd "s-。") (kbd "s-."))
 +(define-key key-translation-map (kbd "C-·") (kbd "C-`"))
-+;; Key sequence M-· starts with non-prefix key ESC
++;; FIX: Key sequence M-· starts with non-prefix key ESC
 +;; (define-key key-translation-map (kbd "M-·") (kbd "M-`"))
 +
 +;; Cusmotized Keybindings' Functions
