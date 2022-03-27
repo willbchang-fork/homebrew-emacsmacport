@@ -100,7 +100,7 @@ class EmacsMac < Formula
   # Native keybindings
   patch do
     url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-native-keybindings.patch"
-    sha256 "ab50cdf5c3dfc17fd1d002e76df6818b46a9af672f7c22325baf4db445d525f5"
+    sha256 "2c32fdd89c1a46eb52d7ae4aa8319dec295677d5fdad8c69f70cc6fc7a20a5f9"
   end
 
   # Natural Title Bar
