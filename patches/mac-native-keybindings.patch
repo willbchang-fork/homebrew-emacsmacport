@@ -57,7 +57,6 @@ index 20b03f3..8fb56ea 100644
 +(global-set-key (kbd "s-0") 'text-scale-adjust)
 +
 +;; Use Return to act Yes
-+(fset 'yes-or-no-p 'y-or-n-p)
 +(define-key y-or-n-p-map (kbd "<return>") 'act)
 +
 +;; Translation ESC keybinding
