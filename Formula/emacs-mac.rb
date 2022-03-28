@@ -89,7 +89,7 @@ class EmacsMac < Formula
   # https://ylluminarious.github.io/2019/05/23/how-to-fix-the-emacs-mac-port-for-multi-tty-access/
   patch do
     url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/multi-tty-27.diff"
-    sha256 "5a13e83e79ce9c4a970ff0273e9a3a07403cc07f7333a0022b91c191200155a1"
+    sha256 "2a5121169a2442ea93611994a448a0035ccfaf1344e7ee1ff3cd94d914747625"
   end
 
   # Suppress Messages
