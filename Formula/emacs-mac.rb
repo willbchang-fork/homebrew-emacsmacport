@@ -47,7 +47,7 @@ class EmacsMac < Formula
     option "with-#{icon}", "Using Emacs icon: #{icon}"
     next if build.without? "#{icon}"
     resource "#{icon}" do
-      url "https://raw.githubusercontent.com/railwaycat/homebrew-emacsmacport/f27bd8d442fa40d4d96926a6bd94f0889184d966/icons/#{icon}.icns"
+      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/icons/#{icon}.icns"
       sha256 iconsha
     end
   end
@@ -71,14 +71,14 @@ class EmacsMac < Formula
   if build.with? "no-title-bars"
     # odie "--with-no-title-bars patch not supported on --HEAD" if build.head?
     patch do
-      url "https://raw.githubusercontent.com/railwaycat/homebrew-emacsmacport/667f0efc08506facfc6963ac1fd1d5b9b777e094/patches/emacs-26.2-rc1-mac-7.5-no-title-bar.patch"
+      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/emacs-26.2-rc1-mac-7.5-no-title-bar.patch"
       sha256 "8319fd9568037c170f5990f608fb5bd82cd27346d1d605a83ac47d5a82da6066"
     end
   end
 
   if build.with? "natural-title-bar"
     patch do
-      url "https://raw.githubusercontent.com/railwaycat/homebrew-emacsmacport/7b3efcb066625f7a3423a229ff1a8d8a53fa6175/patches/emacs-mac-title-bar-8.3.patch"
+      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/emacs-mac-title-bar-8.3.patch"
       sha256 "21f7fca8d91650bd705c218995084eaa6a8eed9a0c46516299feabee5ecafb63"
     end
   end
@@ -87,32 +87,25 @@ class EmacsMac < Formula
   # https://bitbucket.org/mituharu/emacs-mac/pull-requests/2/add-multi-tty-support-to-be-on-par-with/diff
   # https://ylluminarious.github.io/2019/05/23/how-to-fix-the-emacs-mac-port-for-multi-tty-access/
   patch do
-    url "https://raw.githubusercontent.com/railwaycat/homebrew-emacsmacport/667f0efc08506facfc6963ac1fd1d5b9b777e094/patches/multi-tty-27.diff"
+    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/multi-tty-27.diff"
     sha256 "5a13e83e79ce9c4a970ff0273e9a3a07403cc07f7333a0022b91c191200155a1"
   end
 
-  # Hush load, org-babel-load-file messages
+  # Suppress Messages
   patch do
-    url "https://raw.githubusercontent.com/willbchang-fork/homebrew-emacsmacport/master/patches/suppress-message.patch"
+    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/suppress-message.patch"
     sha256 "2669c11f2cdb8866328972923f9cde85a9fc51c4c6a93ae4d703eaba4181dd74"
   end
 
-  # Native keybindings
+  # Mac Native keybindings
   patch do
-    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-native-keybindings.patch"
+    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/mac-native-keybindings.patch"
     sha256 "9450655f713c8b88e83a8b31a78b506cc3e814bfcad2cb0dea17a514363da222"
   end
 
-  # Natural Title Bar
-#  patch do
-#    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/natural-title-bar.patch"
-#    sha256 "4c1f7a56e09a25101b6a71ec31f34ec16d03d2d1966db6f4780e11989c18617e"
-#  end
-#
-
   stable do
     patch do
-      url "https://raw.githubusercontent.com/railwaycat/homebrew-emacsmacport/7e793808ebbc11d519a0103fb9f8fe7efbec345d/patches/mac-arm-fix.diff"
+      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/mac-arm-fix.diff"
       sha256 "9b58a61931e79863caa5c310a7ec290cc7b84c78aa0086d0ba7192756c370db8"
     end
   end
@@ -210,7 +203,7 @@ class EmacsMac < Formula
       To link the application to default Homebrew App location:
         ln -s #{prefix}/Emacs.app /Applications
       Other ways please refer:
-        https://github.com/railwaycat/homebrew-emacsmacport/wiki/Alternative-way-of-place-Emacs.app-to-Applications-directory
+        https://github.com/willbchang/homebrew-emacsmacport/wiki/Alternative-way-of-place-Emacs.app-to-Applications-directory
 
       If you are using Doom Emacs, be sure to run doom sync:
         ~/.emacs.d/bin/doom sync
