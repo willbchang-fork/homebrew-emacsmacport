@@ -71,14 +71,14 @@ class EmacsMac < Formula
   if build.with? "no-title-bars"
     # odie "--with-no-title-bars patch not supported on --HEAD" if build.head?
     patch do
-      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/emacs-26.2-rc1-mac-7.5-no-title-bar.patch"
+      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/emacs-26.2-rc1-mac-7.5-no-title-bar.patch"
       sha256 "8319fd9568037c170f5990f608fb5bd82cd27346d1d605a83ac47d5a82da6066"
     end
   end
 
   if build.with? "natural-title-bar"
     patch do
-      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/emacs-mac-title-bar-8.3.patch"
+      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/emacs-mac-title-bar-8.3.patch"
       sha256 "21f7fca8d91650bd705c218995084eaa6a8eed9a0c46516299feabee5ecafb63"
     end
   end
@@ -87,25 +87,25 @@ class EmacsMac < Formula
   # https://bitbucket.org/mituharu/emacs-mac/pull-requests/2/add-multi-tty-support-to-be-on-par-with/diff
   # https://ylluminarious.github.io/2019/05/23/how-to-fix-the-emacs-mac-port-for-multi-tty-access/
   patch do
-    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/multi-tty-27.diff"
+    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/multi-tty-27.diff"
     sha256 "5a13e83e79ce9c4a970ff0273e9a3a07403cc07f7333a0022b91c191200155a1"
   end
 
   # Suppress Messages
   patch do
-    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/suppress-message.patch"
+    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/suppress-message.patch"
     sha256 "2669c11f2cdb8866328972923f9cde85a9fc51c4c6a93ae4d703eaba4181dd74"
   end
 
   # Mac Native keybindings
   patch do
-    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/mac-native-keybindings.patch"
+    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-native-keybindings.patch"
     sha256 "9450655f713c8b88e83a8b31a78b506cc3e814bfcad2cb0dea17a514363da222"
   end
 
   stable do
     patch do
-      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/mac-arm-fix.diff"
+      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-arm-fix.diff"
       sha256 "9b58a61931e79863caa5c310a7ec290cc7b84c78aa0086d0ba7192756c370db8"
     end
   end
