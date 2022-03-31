@@ -95,7 +95,7 @@ class EmacsMac < Formula
   # Suppress Messages
   patch do
     url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/suppress-message.patch"
-    sha256 "8fa598cc2fa8b93ddabbb6568d47a79ba6802dcb3c37968ab77bbaaac6aa3751"
+    sha256 "c1077cc2bf5bd46414f8bc53c284f9105f1afd574a8b96d7f24218d09d814075"
   end
 
   # Mac Native keybindings
