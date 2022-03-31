@@ -104,6 +104,12 @@ class EmacsMac < Formula
     sha256 "9450655f713c8b88e83a8b31a78b506cc3e814bfcad2cb0dea17a514363da222"
   end
 
+  # Better Default UI
+  patch do
+    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/better-default-UI.patch"
+    sha256 "2b2f95cc060b3d986cd19f0ecbc13610bf6e67bb6cdf76903c95e7e1f283bd51"
+  end
+
   stable do
     patch do
       url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-arm-fix.diff"

@@ -1,0 +1,25 @@
+diff --git a/src/xdisp.c b/src/xdisp.c
+index ab85da0..48010c5 100644
+--- a/src/xdisp.c
++++ b/src/xdisp.c
+@@ -30121,9 +30121,9 @@ produce_special_glyphs (struct it *it, enum display_element_type what)
+     {
+       /* Continuation glyph.  For R2L lines, we mirror it by hand.  */
+       if (it->bidi_it.paragraph_dir == R2L)
+-	SET_GLYPH_FROM_CHAR (glyph, '/');
++	SET_GLYPH_FROM_CHAR (glyph, '');
+       else
+-	SET_GLYPH_FROM_CHAR (glyph, '\\');
++	SET_GLYPH_FROM_CHAR (glyph, '');
+       if (it->dp
+ 	  && (gc = DISP_CONTINUE_GLYPH (it->dp), GLYPH_CODE_P (gc)))
+ 	{
+@@ -30135,7 +30135,7 @@ produce_special_glyphs (struct it *it, enum display_element_type what)
+   else if (what == IT_TRUNCATION)
+     {
+       /* Truncation glyph.  */
+-      SET_GLYPH_FROM_CHAR (glyph, '$');
++      SET_GLYPH_FROM_CHAR (glyph, '');
+       if (it->dp
+ 	  && (gc = DISP_TRUNC_GLYPH (it->dp), GLYPH_CODE_P (gc)))
+ 	{

@@ -6,6 +6,8 @@
 - [X] end-of-buffer
 ** Org Mode
 - [X] org-babel-load-file
+      (org-unlogged-message "EMPTY ENTRY")
+
 - [X] org-cycle
 ** Init
 - [X] write-region
