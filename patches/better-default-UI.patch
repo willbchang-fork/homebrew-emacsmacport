@@ -35,7 +35,6 @@ index ab85da0..ec8fbaa 100644
 -    }
 -  else
 -    emacs_abort ();
-+  emacs_abort ();
  
  #ifdef HAVE_WINDOW_SYSTEM
    /* On a GUI frame, when the right fringe (left fringe for R2L rows)
