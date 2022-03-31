@@ -45,7 +45,7 @@ index 566258e..e8b721d 100644
  	(when org-babel-post-tangle-hook
  	  (mapc
 diff --git a/lisp/org/org.el b/lisp/org/org.el
-index 4755bca..4b90006 100644
+index 4755bca..b1ed1c3 100644
 --- a/lisp/org/org.el
 +++ b/lisp/org/org.el
 @@ -246,10 +246,8 @@ byte-compiled before it is loaded."
@@ -87,7 +87,15 @@ index 4755bca..4b90006 100644
        (setq org-cycle-global-status 'overview)
        (run-hook-with-args 'org-cycle-hook 'overview)))))
  
-@@ -6565,7 +6559,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+@@ -6534,7 +6528,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+       ;; Nothing is hidden behind this heading
+       (unless (org-before-first-heading-p)
+ 	(run-hook-with-args 'org-pre-cycle-hook 'empty))
+-      (org-unlogged-message "EMPTY ENTRY")
+       (setq org-cycle-subtree-status nil)
+       (save-excursion
+ 	(goto-char eos)
+@@ -6565,7 +6558,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
  		(dolist (e (org-list-get-all-items (point) struct prevs))
  		  (org-list-set-item-visibility e struct 'folded))
  		(goto-char (if (< end eos) end eos)))))))
@@ -95,7 +103,7 @@ index 4755bca..4b90006 100644
        (save-excursion
  	(goto-char eos)
  	(outline-next-heading)
-@@ -6581,8 +6574,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+@@ -6581,8 +6573,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
        (unless (org-before-first-heading-p)
  	(run-hook-with-args 'org-pre-cycle-hook 'subtree))
        (org-flag-region eoh eos nil 'outline)
@@ -104,7 +112,7 @@ index 4755bca..4b90006 100644
        (setq org-cycle-subtree-status 'subtree)
        (unless (org-before-first-heading-p)
  	(run-hook-with-args 'org-cycle-hook 'subtree)))
-@@ -6590,7 +6581,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
+@@ -6590,7 +6580,6 @@ Use `\\[org-edit-special]' to edit table.el tables"))
        ;; Default action: hide the subtree.
        (run-hook-with-args 'org-pre-cycle-hook 'folded)
        (org-flag-region eoh eos t 'outline)
