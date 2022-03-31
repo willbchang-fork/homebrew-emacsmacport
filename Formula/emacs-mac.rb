@@ -22,7 +22,7 @@ class EmacsMac < Formula
 
   # icons
   ICONS_INFO = {
-    "emacs-dragon-icon" => "7680862abeb8bac749dc7d962e8e46bc45614e4c3a3a1eddb4aa020d34e48019",
+    "emacs-dragon-icon" => "a0a624e6a08971f2f9220d2a3aaa79e1f8aecc85df8a522ebb40310c54699c40",
     "emacs-big-sur-icon" => "e9ec41167c38842a3f6555d3142909211a2aa7e3ff91621b9a576b3847d3b565",
     "emacs-icons-project-EmacsIcon1" => "50dbaf2f6d67d7050d63d987fe3743156b44556ab42e6d9eee92248c56011bd0",
     "emacs-icons-project-EmacsIcon2" => "8d63589b0302a67f13ab94b91683a8ad7c2b9e880eabe008056a246a22592963",
