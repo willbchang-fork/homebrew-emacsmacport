@@ -105,10 +105,10 @@ class EmacsMac < Formula
   end
 
   # Better Default UI
-  patch do
-    url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/better-default-UI.patch"
-    sha256 "42305745d7ca1dd2a41af67ae36875f9455e10f3102d56656a84549f11bd31f7"
-  end
+#   patch do
+#     url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/better-default-UI.patch"
+#     sha256 "42305745d7ca1dd2a41af67ae36875f9455e10f3102d56656a84549f11bd31f7"
+#   end
 
   stable do
     patch do
