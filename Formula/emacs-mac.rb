@@ -110,12 +110,12 @@ class EmacsMac < Formula
 #     sha256 "42305745d7ca1dd2a41af67ae36875f9455e10f3102d56656a84549f11bd31f7"
 #   end
 
-  stable do
-    patch do
-      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-arm-fix.diff"
-      sha256 "9b58a61931e79863caa5c310a7ec290cc7b84c78aa0086d0ba7192756c370db8"
-    end
-  end
+#   stable do
+#     patch do
+#       url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-arm-fix.diff"
+#       sha256 "9b58a61931e79863caa5c310a7ec290cc7b84c78aa0086d0ba7192756c370db8"
+#     end
+#   end
 
   head do
     if build.with? "native-comp"
