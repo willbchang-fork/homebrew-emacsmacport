@@ -1,8 +1,8 @@
 diff --git a/src/macappkit.m b/src/macappkit.m
-index fb7bf2a..732fbed 100644
+index 16403f9bf5..2118b8bb13 100644
 --- a/src/macappkit.m
 +++ b/src/macappkit.m
-@@ -2262,6 +2262,18 @@ - (void)showMenuBar
+@@ -1935,6 +1935,18 @@ - (BOOL)doesHoldQuit
  
  @implementation EmacsWindow
  
@@ -21,12 +21,11 @@ index fb7bf2a..732fbed 100644
  - (instancetype)initWithContentRect:(NSRect)contentRect
  			  styleMask:(NSWindowStyleMask)windowStyle
  			    backing:(NSBackingStoreType)bufferingType
-@@ -2854,6 +2866,20 @@ - (void)setupWindow
-       MRC_RELEASE (visualEffectView);
-       FRAME_BACKGROUND_ALPHA_ENABLED_P (f) = true;
-     }
-+
-+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+@@ -2495,6 +2507,19 @@ - (void)setupWindow
+   window.contentView = visualEffectView;
+   MRC_RELEASE (visualEffectView);
+   FRAME_BACKGROUND_ALPHA_ENABLED_P (f) = true;
++	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 +  NSString *transparentTitleBar = [userDefaults stringForKey: @"TransparentTitleBar"];
 +
 +  if ([transparentTitleBar isEqualToString: @"DARK"]) {
@@ -42,13 +41,11 @@ index fb7bf2a..732fbed 100644
    if (FRAME_MAC_DOUBLE_BUFFERED_P (f))
      {
        FRAME_SYNTHETIC_BOLD_WORKAROUND_DISABLED_P (f) = true;
-@@ -6906,8 +6932,7 @@ + (void)initialize
-       if ([defaults objectForKey:@"ApplePressAndHoldEnabled"] == nil)
- 	{
- 	  NSDictionaryOf (NSString *, NSString *) *appDefaults =
--	    [NSDictionary dictionaryWithObject:@"NO"
--					forKey:@"ApplePressAndHoldEnabled"];
-+            [NSDictionary dictionaryWithObjectsAndKeys:@"NO", @"ApplePressAndHoldEnabled", @"NO", @"TransparentTitleBar", @"NO", @"HideDocumentIcon", nil];
+@@ -6309,6 +6334,7 @@ + (void)initialize
  
- 	  [defaults registerDefaults:appDefaults];
- 	}
+       if ([defaults objectForKey:@"ApplePressAndHoldEnabled"] == nil)
+ 	[defaults registerDefaults:@{@"ApplePressAndHoldEnabled" : @"NO"}];
++	[NSDictionary dictionaryWithObjectsAndKeys:@"NO", @"ApplePressAndHoldEnabled", @"NO", @"TransparentTitleBar", @"NO", @"HideDocumentIcon", nil];
+     }
+ }
+ 
