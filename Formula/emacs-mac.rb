@@ -2,9 +2,9 @@
 class EmacsMac < Formula
   desc "YAMAMOTO Mitsuharu's Mac port of GNU Emacs"
   homepage "https://www.gnu.org/software/emacs/"
-  url "https://bitbucket.org/mituharu/emacs-mac/get/emacs-27.2-mac-8.3.tar.gz"
-  version "emacs-27.2-mac-8.3"
-  sha256 "4263e4e1897a950c16252b58c9af8ae4d369b25790873d0777c9547a89b90198"
+  url "https://bitbucket.org/mituharu/emacs-mac/get/emacs-28.1-mac-9.0.tar.gz"
+  version "emacs-28.1-mac-9.0"
+  sha256 "967d5642ca47ae3de2626f0fc7163424e36925642827e151c3906179020dd90e"
 
   head "https://bitbucket.org/mituharu/emacs-mac.git", branch: "work"
 
@@ -110,12 +110,12 @@ class EmacsMac < Formula
 #     sha256 "42305745d7ca1dd2a41af67ae36875f9455e10f3102d56656a84549f11bd31f7"
 #   end
 
-  stable do
-    patch do
-      url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-arm-fix.diff"
-      sha256 "9b58a61931e79863caa5c310a7ec290cc7b84c78aa0086d0ba7192756c370db8"
-    end
-  end
+#   stable do
+#     patch do
+#       url "https://raw.githubusercontent.com/willbchang/homebrew-emacsmacport/master/patches/mac-arm-fix.diff"
+#       sha256 "9b58a61931e79863caa5c310a7ec290cc7b84c78aa0086d0ba7192756c370db8"
+#     end
+#   end
 
   head do
     if build.with? "native-comp"
